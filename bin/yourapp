@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+
+use Buonzz\Template\Commands\HelloCommand;
+use Symfony\Component\Console\Application;
+
+$application = new Application("My Hello World PHAR App by Darwin Biler", "v1.0");
+$application->add(new HelloCommand);
+$application->run();
