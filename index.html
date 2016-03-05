@@ -67,28 +67,30 @@ yourapp -V
 <a id="get-started" class="anchor" href="#get-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get Started</h3>
 
 <p>
-  Create a new project
+  Create a new project <br/>
   <code>
     composer create-project buonzz/composer-phar-template
   </code>
-
-  Fetch the composer dependencies
+  <br/>
+  Fetch the composer dependencies<br/>
   <code>
     composer install
   </code>
-
-  In able to generate the a phar file, you need to install the <a href="http://box-project.github.io/box2/" href="_blank">box</a>. Follow the following instructions to install box
+  <br/>
+  In able to generate the a phar file, you need to install the <a href="http://box-project.github.io/box2/" href="_blank">box</a>. Follow the following instructions to install box <br/>
+  <pre>
   <code>
 curl -LSs https://box-project.github.io/box2/installer.php | php
 sudo mv box.phar /usr/local/bin/box
 sudo chmod 755 /usr/local/bin/box
 box --version    
   </code>
-
+  </pre>
+  <br/>
   In your <b>php.ini</b> file, make sure you have set <b>phar.readonly</b> settings to <b>Off</b><br/>
   Now you are all set! Just execute 
 
-  <code>./build.sh</code>
+<br/>  <code>./build.sh</code> <br/>
   and it will produce the phar file in <b>dist></b> folder.
 </p>
 
