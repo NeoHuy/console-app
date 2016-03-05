@@ -41,14 +41,26 @@
 
 <ul>
   <li>Compresses all the dependency files inside the PHAR file. You can then distribute your CLI app in any machine w/o having to use Composer to fetch its dependencies.</li>
-  <li>Powered by Symfony Console.</li>
-  <li>Support for Eloquent ORM - YES!, you don't need to use Artisan console (not even Laravel ) just to use use Eloquent within your Console Application.</li>
+  <li>Powered by <b>Symfony Console</b>.</li>
+  <li>Support for <b>Eloquent ORM</b> - YES!, you don't need to use <b>Artisan console</b> (not even Laravel ) just to use use Eloquent within your Console Application.</li>
   <li>Easy PHAR file compilation - it just takes one command to put all your source files and depedencies to one  phar file : <b>./build.sh</b> and that is all.</li>
   <li>Easy configuration via <b>.env</b> files. Love the dead simple .env files configuration of Laravel? Yes we have that here!</li>
 </ul>
 
 
+<h3>
+<a id="try" class="anchor" href="#try" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Try the Sample PHAR file</h3>
 
+<p>To give you a better idea of the final output, you can try a simple "Hello World" phar file, that you can install in your local machine. All you need is PHP installed to run the sample file.
+<pre>
+<code>
+wget http://www.darwinbiler.com/composer-phar-template/sample/yourapp.phar
+sudo mv yourapp.phar  /usr/local/bin/yourapp
+chmod +x /usr/local/bin/yourapp
+yourapp -V
+</code>
+</pre>
+</p>
 
 
       <footer class="site-footer">
