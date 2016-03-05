@@ -10,8 +10,10 @@ Features
 * Unit-Testing with PHPUnit
 * Comprehensive Guides and tutorial
 * Easy PHAR file building process
+* Eloquent ORM support
+* Powered by Symfony Console
+* Easy configuration via .env file
 
-I encourage that you put more information on this readme file instead of leaving it as is. See [http://www.darwinbiler.com/designing-and-making-the-readme-file-for-your-github-repository/](How to make a README file) for more info.
 
 ## Build Environment
 
