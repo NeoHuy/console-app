@@ -51,7 +51,7 @@
 <h3>
 <a id="try" class="anchor" href="#try" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Try the Sample PHAR file</h3>
 
-<p>To give you a better idea of the final output, you can try a simple "Hello World" phar file, that you can install in your local machine. All you need is PHP installed to run the sample file.
+<p>To give you a better idea of what you can produce out of this boilerplate, you can try a simple "Hello World" phar file that you can install in your local machine. All you need is PHP installed to run the sample file.
 <pre>
 <code>
 wget http://www.darwinbiler.com/composer-phar-template/sample/yourapp.phar
@@ -61,6 +61,37 @@ yourapp -V
 </code>
 </pre>
 </p>
+
+
+<h3>
+<a id="get-started" class="anchor" href="#get-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get Started</h3>
+
+<p>
+  Create a new project
+  <code>
+    composer create-project buonzz/composer-phar-template
+  </code>
+
+  Fetch the composer dependencies
+  <code>
+    composer install
+  </code>
+
+  In able to generate the a phar file, you need to install the <a href="http://box-project.github.io/box2/" href="_blank">box</a>. Follow the following instructions to install box
+  <code>
+curl -LSs https://box-project.github.io/box2/installer.php | php
+sudo mv box.phar /usr/local/bin/box
+sudo chmod 755 /usr/local/bin/box
+box --version    
+  </code>
+
+  In your <b>php.ini</b> file, make sure you have set <b>phar.readonly</b> settings to <b>Off</b><br/>
+  Now you are all set! Just execute 
+
+  <code>./build.sh</code>
+  and it will produce the phar file in <b>dist></b> folder.
+</p>
+
 
 
       <footer class="site-footer">
