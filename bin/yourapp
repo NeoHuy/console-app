@@ -14,23 +14,35 @@ $files = array(
 foreach ($files as $file) {
     if (file_exists($file)) {
         require $file;
+        define('COMPOSER_INSTALLED', 1);
         break;
     }
-    else
-    	throw new \Exception("Execute composer install first! autoloader file not found.");
 }
+
+// check if autoloader is present
+if(!defined('COMPOSER_INSTALLED'))
+	die('Install Composer dependencies first, autoloader not found.');
 
 
 use Buonzz\Template\Commands\HelloCommand;
 use Symfony\Component\Console\Application;
-
-
 use Dotenv\Dotenv;
 use Illuminate\Database\Capsule\Manager as DB;
 
+
+
 // load configurations
-$dotenv = new Dotenv(getcwd());
-$dotenv->load();
+
+try{
+	$dotenv = new Dotenv(getcwd());
+	$dotenv->load();
+}catch(\Dotenv\Exception\InvalidPathException $e)
+{
+	putenv('DB_HOSTNAME=localhost');
+	putenv('DB_NAME=dbname');
+	putenv('DB_USER=user');
+	putenv('DB_PASSWORD=pass');
+}
 
 
 // load ORM
