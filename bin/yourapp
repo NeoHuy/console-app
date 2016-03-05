@@ -1,8 +1,56 @@
 #!/usr/bin/env php
 <?php
 
+
+$files = array(
+  __DIR__ . '/../../vendor/autoload.php',
+  __DIR__ . '/../../../../autoload.php',
+  __DIR__ . '/../../../autoload.php',
+  '../vendor/autoload.php',
+  'vendor/autoload.php',  
+);
+
+
+foreach ($files as $file) {
+    if (file_exists($file)) {
+        require $file;
+        break;
+    }
+    else
+    	throw new \Exception("Execute composer install first! autoloader file not found.");
+}
+
+
 use Buonzz\Template\Commands\HelloCommand;
 use Symfony\Component\Console\Application;
+
+
+use Dotenv\Dotenv;
+use Illuminate\Database\Capsule\Manager as DB;
+
+// load configurations
+$dotenv = new Dotenv(getcwd());
+$dotenv->load();
+
+
+// load ORM
+$capsule = new DB; 
+
+$capsule->addConnection(array(
+    'driver'    => 'mysql',
+    'host'      => getenv('DB_HOSTNAME'),
+    'database'  => getenv('DB_NAME'),
+    'username'  => getenv('DB_USER'),
+    'password'  => getenv('DB_PASSWORD'),
+    'charset'   => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix'    => ''
+));
+
+$capsule->bootEloquent();
+$capsule->setAsGlobal();
+
+
 
 $application = new Application("My Hello World PHAR App by Darwin Biler", "v1.0");
 $application->add(new HelloCommand);
