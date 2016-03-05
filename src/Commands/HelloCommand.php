@@ -20,6 +20,6 @@ class HelloCommand extends Command
     
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->write("Hello");
+        $output->writeln("Hello");
     }
 }

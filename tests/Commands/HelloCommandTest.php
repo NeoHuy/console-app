@@ -17,6 +17,6 @@ class HelloCommandTest extends \PHPUnit_Framework_TestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute(array('command' => $command->getName()));
 
-        $this->assertEquals($commandTester->getDisplay(), 'Hello');
+        $this->assertEquals($commandTester->getDisplay(), "Hello\n");
     }
 }
