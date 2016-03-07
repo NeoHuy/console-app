@@ -1,6 +1,6 @@
 {
-    "name": "buonzz/composer-phar-template",
-    "description": "Boilerplate package for executable PHAR file.",
+    "name": "buonzz/console-app",
+    "description": "Boilerplate project files for creating Console Applications on executable PHAR file.",
     "keywords": ["template", "phar", "package", "console application"],
     "license": "DBAD",
     "authors": [
