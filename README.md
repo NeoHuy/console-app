@@ -1,5 +1,5 @@
-Composer PHAR Template
-=========================
+Console App
+===========
 
 If you are trying to create a new Console Application that is distributed as .phar file, this template of files will surely help you make the process a lot easier and faster.
 
@@ -18,7 +18,7 @@ Features
 ## Build Environment
 
 
-You need to have docker and docker-compose command installed in your local environment to build a new phar file.
+You need to have docker and docker-compose command installed in your local environment to build a new phar file.<br/>
 
 Put up the server dependencies
 ```

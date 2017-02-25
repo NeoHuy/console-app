@@ -1,5 +1,7 @@
 #! /bin/bash
 
+composer install
+
 if [ -f 'dist/*.phar' ];
 then
    rm dist/*.phar
