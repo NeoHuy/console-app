@@ -18,28 +18,31 @@ Features
 ## Build Environment
 
 
-In order to build the phar file, you need to install the box command. To do so:
-```
-curl -LSs https://box-project.github.io/box2/installer.php | php
-```
+You need to have docker and docker-compose command installed in your local environment to build a new phar file.
 
-Make sure you turn off readonly setting of phar file in your php.ini. In PHP7:
-
+Put up the server dependencies
 ```
-sudo vi /etc/php/7.0/cli/php.ini
-```
-Find the *phar.readonly* settings and set it to *Off*
-
-
-Now move the box.phar file to /usr/local/bin so it can be globally available in console.
-
-```
-sudo mv box.phar /usr/local/bin/box
-sudo chmod 755 /usr/local/bin/box
+docker-compose up -d
 ```
 
-You are now ready to build phar file!
+ssh to the container
+```
+docker-compose exec cli bash
+```
+
+execute the build command
 
 ```
-box --version
+cd /code
+./build.sh
+```
+
+The compiled phar file should now be available in  /code/dist/yourapp.phar <br/>
+You can then upload it to your web server and let the users download/install it by:
+
+```
+wget http://downloads.yourdomain.com/yourapp.phar
+sudo mv yourapp.phar  /usr/local/bin/yourapp
+chmod +x /usr/local/bin/yourapp
+yourapp -V
 ```
