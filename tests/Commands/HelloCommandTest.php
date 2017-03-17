@@ -4,7 +4,7 @@
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 
-use Buonzz\Template\Commands\HelloCommand;
+use App\Console\Commands\HelloCommand;
 
 class HelloCommandTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Buonzz\Template\Models;
+namespace App\Console\Models;
 
 class Post extends \Illuminate\Database\Eloquent\Model {
 }

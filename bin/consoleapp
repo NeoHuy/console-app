@@ -24,12 +24,16 @@ if(!defined('COMPOSER_INSTALLED'))
 	die('Install Composer dependencies first, autoloader not found.');
 
 
-use Buonzz\Template\Commands\HelloCommand;
+use App\Console\Commands\HelloCommand;
 use Symfony\Component\Console\Application;
 use Dotenv\Dotenv;
 use Illuminate\Database\Capsule\Manager as DB;
+use App\Console\Logger;
 
 
+
+// create logger
+$logger = new Logger();
 
 // load configurations
 

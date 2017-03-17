@@ -17,15 +17,16 @@
         "illuminate/database": "^5.0",
         "monolog/monolog": "^1.22",
         "guzzlehttp/guzzle": "~6.0",
-        "tightenco/collect": "^5.4"
+        "tightenco/collect": "^5.4",
+        "monolog/monolog": "^1.22",
     },
 	"require-dev": {
 		"phpunit/phpunit": "^4.0"
     },
-    "bin": ["bin/yourapp"],
+    "bin": ["bin/consoleapp"],
 	"autoload": {
         "psr-4": {
-            "Buonzz\\Template\\": "src/"
+            "App\\Console\\": "src/"
         }
     }
 }
