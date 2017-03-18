@@ -6,7 +6,6 @@ use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 class Log {
-
 	private $logger;	
 
 	public function __construct(){

@@ -46,3 +46,8 @@ sudo mv yourapp.phar  /usr/local/bin/yourapp
 chmod +x /usr/local/bin/yourapp
 yourapp -V
 ```
+
+shutdown the containers
+```
+docker-compose down
+```
