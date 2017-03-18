@@ -9,7 +9,7 @@ class Cache {
 
 	public function __construct(){
 		$this->m = new Memcached();
-		$this->m->addServer( getenv('MEMCACHED_SERVER') , 11211);
+		$this->m->addServer( getenv('MEMCACHED_HOST') , 11211);
 	}
 	public function get($key){
 		return $this->m->get($key);
