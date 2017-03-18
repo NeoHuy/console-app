@@ -25,12 +25,20 @@ foreach ($files as $file) {
 if(!defined('COMPOSER_INSTALLED'))
 	die('Install Composer dependencies first, autoloader not found.');
 
-
 use App\Console\Commands\HelloCommand;
 use Symfony\Component\Console\Application;
 use Dotenv\Dotenv;
 use Illuminate\Database\Capsule\Manager as DB;
 use App\Console\Log;
+
+// queue dependencies
+use Illuminate\Bus\Dispatcher;
+use Illuminate\Container\Container;
+use Illuminate\Contracts\Queue\Factory as QueueFactory;
+use Illuminate\Encryption\Encrypter;
+use Illuminate\Queue\Capsule\Manager as Queue;
+use Illuminate\Queue\Connectors\RedisConnector;
+use Illuminate\Redis\Database as Redis;
 
 
 // load configurations
@@ -76,6 +84,52 @@ $capsule->setAsGlobal();
 
 
 
+// load queue
+$queue   = new Queue;
+$app     = $queue->getContainer();
+$manager = $queue->getQueueManager();
+$queue->addConnection([
+    'driver'     => 'redis',
+    'connection' => 'default',
+    'queue'      => 'default',
+    'expire'     => 60,
+]);
+$app->singleton(Redis::class, function () {
+    return new Redis([
+        'cluster' => false,
+        'default' => [
+            'host'     => getenv('REDIS_HOST'),
+            'port'     => 6379,
+            'database' => 0,
+        ],
+    ]);
+});
+$manager->addConnector('redis', function () use ($app) {
+    return new RedisConnector(
+        $app[Redis::class]
+    );
+});
+$app->singleton('encrypter', function () {
+    return new Encrypter('G89WrlvjLXo7GBc'); //TODO: move this to .env
+});
+$app->singleton(Dispatcher::class, function ($app) {
+    return new Dispatcher($app, function ($connection = null) use ($app) {
+        return $app[QueueFactory::class]->connection($connection);
+    });
+});
+$app->alias(
+    'Illuminate\Bus\Dispatcher',
+    'Illuminate\Contracts\Bus\Dispatcher'
+);
+$app->alias(
+    'Illuminate\Bus\Dispatcher',
+    'Illuminate\Contracts\Bus\QueueingDispatcher'
+);
+
+$queue->setAsGlobal();
+
+
+// boot up the application
 $application = new Application("My Hello World PHAR App by Darwin Biler", "v1.0");
 $application->add(new HelloCommand);
 $application->run();
