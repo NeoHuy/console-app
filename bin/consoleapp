@@ -26,6 +26,7 @@ if(!defined('COMPOSER_INSTALLED'))
 	die('Install Composer dependencies first, autoloader not found.');
 
 use App\Console\Commands\HelloCommand;
+use App\Console\Commands\WorkCommand;
 use Symfony\Component\Console\Application;
 use Dotenv\Dotenv;
 use Illuminate\Database\Capsule\Manager as DB;
@@ -132,4 +133,5 @@ $queue->setAsGlobal();
 // boot up the application
 $application = new Application("My Hello World PHAR App by Darwin Biler", "v1.0");
 $application->add(new HelloCommand);
+$application->add(new WorkCommand);
 $application->run();
