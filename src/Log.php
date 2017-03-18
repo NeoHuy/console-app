@@ -5,7 +5,7 @@ namespace App\Console;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
-class Logger {
+class Log {
 
 	private $logger;	
 

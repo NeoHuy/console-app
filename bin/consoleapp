@@ -2,6 +2,8 @@
 <?php
 
 
+date_default_timezone_set("UTC");
+
 $files = array(
   __DIR__ . '/../../vendor/autoload.php',
   __DIR__ . '/../../../../autoload.php',
@@ -28,14 +30,12 @@ use App\Console\Commands\HelloCommand;
 use Symfony\Component\Console\Application;
 use Dotenv\Dotenv;
 use Illuminate\Database\Capsule\Manager as DB;
-use App\Console\Logger;
+use App\Console\Log;
 
-
-
-// create logger
-$logger = new Logger();
 
 // load configurations
+
+$env_file_found='yes';
 
 try{
 	$dotenv = new Dotenv(getcwd());
@@ -46,8 +46,14 @@ try{
 	putenv('DB_NAME=dbname');
 	putenv('DB_USER=user');
 	putenv('DB_PASSWORD=pass');
+  putenv('LOGFILE=./consoleapp.log');
+
+  $env_file_found='no';
 }
 
+// create logger
+$logger = new Log();
+$logger->info(".env file not found. using default config values");
 
 // load ORM
 $capsule = new DB; 
@@ -63,6 +69,8 @@ $capsule->addConnection(array(
     'prefix'    => ''
 ));
 
+
+$logger->info("booting MySQL Connection on " . getenv('DB_HOSTNAME'));
 $capsule->bootEloquent();
 $capsule->setAsGlobal();
 
