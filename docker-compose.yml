@@ -14,4 +14,4 @@ services:
       ports:
         - "127.0.0.1:11211:11211"
     queue:
-      image: nickinchina/beanstalkd
+      image: redis:alpine
