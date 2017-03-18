@@ -6,3 +6,7 @@ services:
             dockerfile: ./cli.docker
         volumes:
             - ./:/code
+    cache:
+        build:
+            context: ./
+            dockerfile: ./cache.docker
