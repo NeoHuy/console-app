@@ -100,4 +100,5 @@ $queue->setAsGlobal();
 // boot up the application
 $application = new Application("My Hello World PHAR App by Darwin Biler", "v1.0");
 $application->add(new HelloCommand);
+$application->add(new WorkCommand);
 $application->run();
