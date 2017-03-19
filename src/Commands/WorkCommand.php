@@ -13,7 +13,9 @@ use Illuminate\Queue\Worker;
 use App\Console\Exceptions\Handler;
 use Illuminate\Queue\WorkerOptions;
 
-
+/**
+* derived from https://gist.github.com/h-collector/626c1035a0ddffef28fce4b3bc247e70
+*/
 class WorkCommand extends Command
 {
     protected function configure()
