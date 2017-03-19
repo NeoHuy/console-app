@@ -8,8 +8,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use Illuminate\Events\Dispatcher;
 use Illuminate\Queue\Worker;
-use Illuminate\Queue\Failed\NullFailedJobProvider;
+use App\Console\Exceptions\Handler;
+use Illuminate\Queue\WorkerOptions;
+
 
 class WorkCommand extends Command
 {
@@ -25,20 +28,15 @@ class WorkCommand extends Command
 
         global $queue;
 
-        $failer = new NullFailedJobProvider;
-        $worker = new Worker($queue->getQueueManager());
+        $worker = new Worker($queue->getQueueManager(), new Dispatcher(), new Handler());
         
 
         $connection = 'default';
-        $queue      = null;
-        $delay      = 0;
-        $sleep      = 1;
-        $maxTries   = 3;
-
+        $queue      = 'default';
 
         while (true) {
             try {
-                $result = $worker->pop($connection, $queue, $delay, $sleep, $maxTries);
+                $result = $worker->runNextJob($connection, $queue, new WorkerOptions(0));
                 // Job processed
                 if ($result['job']) {
                     $output->writeln("Job processed: %s, result: %s\n",
