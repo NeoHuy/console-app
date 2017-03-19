@@ -90,7 +90,7 @@ $queue   = new Queue;
 
 $queue->addConnection([
     'driver' => 'beanstalkd',
-    'host' => 'localhost',
+    'host' => getenv('BEANSTALKD_HOST'),
     'queue' => 'default',
 ]);
 
